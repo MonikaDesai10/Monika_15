@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Result Prediction System</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f2f2f2;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .container {
+            background: white;
+            width: 400px;
+            margin: auto;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px gray;
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>Student Result Prediction System</h2>
+
+    <label>Attendance (%)</label>
+    <input type="number" id="attendance" placeholder="Enter attendance">
+
+    <label>Internal Marks</label>
+    <input type="number" id="marks" placeholder="Enter internal marks">
+
+    <label>Assignment Score</label>
+    <input type="number" id="assignment" placeholder="Enter assignment score">
+
+    <br>
+
+    <button onclick="predictResult()">Predict Result</button>
+
+    <div id="result"></div>
+
+</div>
+
+<script>
+
+function predictResult() {
+
+    let attendance = Number(document.getElementById("attendance").value);
+    let marks = Number(document.getElementById("marks").value);
+    let assignment = Number(document.getElementById("assignment").value);
+
+    let score = (attendance * 0.3) +
+                (marks * 0.5) +
+                (assignment * 0.2);
+
+    let result = "";
+
+    if (score >= 75) {
+        result = "Prediction: Excellent Performance";
+    }
+    else if (score >= 50) {
+        result = "Prediction: Average Performance";
+    }
+    else {
+        result = "Prediction: Needs Improvement";
+    }
+
+    document.getElementById("result").innerHTML =
+        result + "<br>Prediction Score: " + score.toFixed(2);
+}
+
+</script>
+
+</body>
+</html>
